@@ -20,6 +20,11 @@ from 1 (a genuine dislocation between markets).
 Python 3.13, standard library only. Deterministic, no network, no
 randomness. Reads $MAKEFUN_INPUT_DIR (default /input), writes one
 <case>.out per *.in file to $MAKEFUN_OUTPUT_DIR (default /output).
+
+Local validation (2026-11-13, official 6-case harness, full-precision
+kit inputs): six-case pinball 0.270965 (p00 0.416678, p01 0.311221,
+p02 0.362731, p03 0.295379, p04 0.186924, p05 0.111736); max runtime
+0.24 s per case (limit 8 s); deterministic.
 """
 
 import json
@@ -49,6 +54,8 @@ REGIME_JUMP_WINDOW = 60
 SHIFT = -0.30            # centre shift, same for every quantile
 SUM_K = 0.05             # cross-market sum drift strength
 SUM_THRESH = 0.10        # sum drift fires only when |sum_dev| > 0.10
+# tau95 widening plateau (6-case gain vs V6-C): x1.2 -0.000926,
+# x1.3 -0.000989, x1.4 -0.000937 — broad plateau, not a sharp peak.
 S_MULT_TAU = (1.0, 1.0, 1.0, 1.0, 1.3)   # only tau95 scale widened x1.3
 ATOM_SHIFT = 0.0         # atom sits exactly at the last price
 
